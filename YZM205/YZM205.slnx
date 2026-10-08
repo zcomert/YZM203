@@ -1,4 +1,5 @@
 <Solution>
   <Project Path="Week1/Week1.csproj" />
   <Project Path="Week3/Week3.csproj" />
+  <Project Path="Week4/Week4.csproj" />
 </Solution>
