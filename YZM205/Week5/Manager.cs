@@ -11,7 +11,7 @@ public class Manager : Employee
         this.TeamSize = teamSize;
     }
 
-    public void DisplayInfo()
+    public new void DisplayInfo()
     {
         base.DisplayInfo();
         Console.WriteLine($"Team Size: {TeamSize}");
