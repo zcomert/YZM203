@@ -1,0 +1,22 @@
+@startuml
+title AbstractApp
+
+abstract class Heap{
+    #innerList:int[]
+    +insert(value:int):void
+    +{abstract} extract():int
+}
+
+class MinHeap{
+    +extract():int
+}
+
+class MaxHeap{
+    +extract():int
+}
+
+MinHeap -up-|> Heap
+MaxHeap -up-|> Heap
+
+hide empty members
+@enduml
