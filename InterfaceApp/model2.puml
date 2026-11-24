@@ -1,0 +1,57 @@
+@startuml model2
+
+skinparam classAttributeIconSize 0
+
+class Program <<top-level statements>> {
+    {static} ~BuiltInIntefaceSample() : void
+}
+
+class NumberManager {
+    -_numbers : List<int>
+    +NumberManager()
+    +NumberManager(params items : int[])
+    +Add(item : int) : void
+    +GetEnumerator() : IEnumerator
+}
+
+interface "System.Collections.IEnumerable" as IEnumerable {
+    +GetEnumerator() : IEnumerator
+}
+
+interface "System.Collections.IEnumerator" as IEnumerator {
+    +Current : object
+    +MoveNext() : bool
+    +Reset() : void
+}
+
+class "List<int>" as IntList {
+    +Add(item : int) : void
+    +AddRange(collection : IEnumerable<int>) : void
+    +GetEnumerator() : List<int>.Enumerator
+}
+
+IEnumerable <|.. NumberManager
+NumberManager "1" *-- "1" IntList : _numbers
+NumberManager ..> IEnumerator : returns
+IEnumerable ..> IEnumerator : returns
+Program ..> NumberManager : creates / Add / foreach
+
+note right of NumberManager
+    NumberManager(params int[] items) calls this(),
+    then _numbers.AddRange(items).
+
+    GetEnumerator() delegates to
+    _numbers.GetEnumerator().
+end note
+
+note left of Program
+    numbers = new NumberManager(15, 44, 54, 8)
+    Add: 60, 52, 59, 67, 23
+    foreach prints each item with Console.WriteLine.
+    Output order: 15, 44, 54, 8, 60, 52, 59, 67, 23
+
+    BuiltInIntefaceSample is a local function;
+    it is not called by the top-level statements.
+end note
+
+@enduml

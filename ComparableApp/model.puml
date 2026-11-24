@@ -1,0 +1,33 @@
+@startuml model
+
+interface IComparable {
+    +CompareTo(obj: object) : int
+}
+
+class Employee {
+    +Id : int
+    +FullName : string
+    +Salary : decimal
+    +Employee()
+    +CompareTo(obj: object) : int
+    +ToString() : string
+}
+
+IComparable <|.. Employee
+
+object emp1 {
+    Id = 1
+    FullName = "Ceren Baş"
+    Salary = 70000
+}
+
+object emp2 {
+    Id = 20
+    FullName = "Utku Akar"
+    Salary = 55000
+}
+
+emp1 ..> Employee
+emp2 ..> Employee
+
+@enduml

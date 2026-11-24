@@ -1,0 +1,34 @@
+@startuml model
+
+interface IComparable {
+    +CompareTo(other: object) : int
+}
+
+class Student {
+    +Id : int
+    +FullName : String
+    +Age : int
+    +GPA : decimal
+    +CompareTo(other: object) : int
+}
+
+IComparable <|.. Student
+
+object "std1 : Student" as std1 {
+    Id = 1
+    FullName = "Eray Ağar"
+    Age = 22
+    GPA = 3.70
+}
+
+object "std2 : Student" as std2 {
+    Id = 2
+    FullName = "Mustafa Aydemir"
+    Age = 23
+    GPA = 3.54
+}
+
+std1 ..> Student
+std2 ..> Student
+
+@enduml
